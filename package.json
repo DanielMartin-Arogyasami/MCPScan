@@ -27,7 +27,10 @@
     "scan:test": "tsx test-servers/run-test.ts",
     "scan:batch": "tsx src/registry/batch-scan.ts",
     "scan:npm": "tsx src/registry/scraper.ts",
-    "scan:npm:dry": "tsx src/registry/scraper.ts --dry-run"
+    "scan:npm:dry": "tsx src/registry/scraper.ts --dry-run",
+    "research:build-sandbox": "docker build -f scanner.Dockerfile -t mcp-sandbox:latest .",
+    "research:crawl": "tsx src/registry/crawler.ts",
+    "research:scan": "tsx src/registry/sandbox-runner.ts"
   },
   "keywords": [
     "mcp",

@@ -4,3 +4,5 @@ dist/
 *.tgz
 .DS_Store
 coverage/
+data/
+tmp_scans/

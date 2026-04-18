@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "leaky-server": {
+      "command": "npx",
+      "args": ["-y", "some-mcp-server"],
+      "env": {
+        "GITHUB_TOKEN": "ghp_abc123def456ghi789jkl012mno345pqr678stu",
+        "ANTHROPIC_API_KEY": "sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "DATABASE_PASSWORD": "super_secret_db_password_2024",
+        "API_SECRET": "my-very-secret-api-key-do-not-share"
+      }
+    },
+    "another-server": {
+      "command": "node",
+      "args": ["server.js"],
+      "env": {
+        "OPENAI_API_KEY": "sk-proj-abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGH",
+        "AWS_ACCESS_KEY_ID": "AKIAIOSFODNN7EXAMPLE"
+      }
+    }
+  }
+}

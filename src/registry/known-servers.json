@@ -1,0 +1,98 @@
+[
+  {
+    "name": "filesystem",
+    "package": "@modelcontextprotocol/server-filesystem",
+    "description": "MCP server for local filesystem access",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"]
+  },
+  {
+    "name": "github",
+    "package": "@modelcontextprotocol/server-github",
+    "description": "MCP server for GitHub API access",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-github"]
+  },
+  {
+    "name": "sqlite",
+    "package": "@modelcontextprotocol/server-sqlite",
+    "description": "MCP server for SQLite database access",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-sqlite"]
+  },
+  {
+    "name": "puppeteer",
+    "package": "@modelcontextprotocol/server-puppeteer",
+    "description": "MCP server for browser automation via Puppeteer",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
+  },
+  {
+    "name": "brave-search",
+    "package": "@modelcontextprotocol/server-brave-search",
+    "description": "MCP server for Brave Search API",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-brave-search"]
+  },
+  {
+    "name": "slack",
+    "package": "@modelcontextprotocol/server-slack",
+    "description": "MCP server for Slack workspace access",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-slack"]
+  },
+  {
+    "name": "google-maps",
+    "package": "@modelcontextprotocol/server-google-maps",
+    "description": "MCP server for Google Maps API",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-google-maps"]
+  },
+  {
+    "name": "postgres",
+    "package": "@modelcontextprotocol/server-postgres",
+    "description": "MCP server for PostgreSQL database access",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-postgres"]
+  },
+  {
+    "name": "memory",
+    "package": "@modelcontextprotocol/server-memory",
+    "description": "MCP server for persistent memory via knowledge graph",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-memory"]
+  },
+  {
+    "name": "fetch",
+    "package": "@modelcontextprotocol/server-fetch",
+    "description": "MCP server for fetching web content",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-fetch"]
+  },
+  {
+    "name": "sequential-thinking",
+    "package": "@modelcontextprotocol/server-sequential-thinking",
+    "description": "MCP server for sequential thinking and reasoning",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+  },
+  {
+    "name": "everything",
+    "package": "@modelcontextprotocol/server-everything",
+    "description": "MCP test server that exercises all MCP features",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-everything"]
+  }
+]

@@ -1,0 +1,58 @@
+name: "MCPScan Security Scan"
+description: "Scan MCP server configurations for security vulnerabilities"
+
+inputs:
+  config:
+    description: "Path to MCP config file"
+    required: false
+    default: ""
+  auto:
+    description: "Auto-detect MCP configs"
+    required: false
+    default: "false"
+  fail-below:
+    description: "Fail if score is below this threshold (0-100)"
+    required: false
+    default: "70"
+  format:
+    description: "Output format: terminal, json, markdown"
+    required: false
+    default: "terminal"
+
+outputs:
+  score:
+    description: "Security score (0-100)"
+  grade:
+    description: "Letter grade (A-F)"
+  findings:
+    description: "Number of findings"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+
+    - name: Run MCPScan
+      shell: bash
+      run: |
+        CONFIG_ARG=""
+        if [ -n "${{ inputs.config }}" ]; then
+          CONFIG_ARG="${{ inputs.config }}"
+        fi
+
+        AUTO_ARG=""
+        if [ "${{ inputs.auto }}" = "true" ]; then
+          AUTO_ARG="--auto"
+        fi
+
+        FORMAT_ARG=""
+        if [ "${{ inputs.format }}" = "json" ]; then
+          FORMAT_ARG="--json"
+        elif [ "${{ inputs.format }}" = "markdown" ]; then
+          FORMAT_ARG="--markdown"
+        fi
+
+        npx mcpscan $CONFIG_ARG $AUTO_ARG $FORMAT_ARG --ci --threshold ${{ inputs.fail-below }}

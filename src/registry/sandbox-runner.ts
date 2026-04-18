@@ -97,27 +97,39 @@ function main(): void {
         configArg,
       ].join(" ");
 
-      const stdout = execSync(dockerCmd, {
-        encoding: "utf-8",
-        timeout: SCAN_TIMEOUT_MS,
-        stdio: ["pipe", "pipe", "pipe"],
-      });
+      let rawOutput = "";
 
-      let scanResult: unknown;
       try {
-        scanResult = JSON.parse(stdout);
-      } catch {
-        scanResult = { rawOutput: stdout.trim() };
+        rawOutput = execSync(dockerCmd, {
+          encoding: "utf-8",
+          timeout: SCAN_TIMEOUT_MS,
+          stdio: "pipe",
+        });
+      } catch (execError: unknown) {
+        const err = execError as { stdout?: Buffer | string; stderr?: Buffer | string };
+        rawOutput = err.stdout ? err.stdout.toString() : "";
+        const stderr = err.stderr ? err.stderr.toString() : "";
+
+        if (!rawOutput || rawOutput.trim() === "") {
+          console.log(`    Skipping — scanner failed to run. (stderr: ${stderr.trim().split("\n")[0]})\n`);
+          failed++;
+          continue;
+        }
       }
 
-      results.push({
-        ...target,
-        scanResult,
-        scannedAt: new Date().toISOString(),
-      });
-
-      succeeded++;
-      console.log(`    Done.\n`);
+      try {
+        const scanResult = JSON.parse(rawOutput);
+        results.push({
+          ...target,
+          scanResult,
+          scannedAt: new Date().toISOString(),
+        });
+        succeeded++;
+        console.log(`    Done.\n`);
+      } catch {
+        console.log(`    Skipping — output was not valid JSON (possibly missing config).\n`);
+        failed++;
+      }
     } catch (err) {
       failed++;
       const msg = err instanceof Error ? err.message : String(err);
